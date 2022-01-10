@@ -74,6 +74,17 @@ public class Plateau {
         }
     }
 
+    public String generateRoversPositionReport() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Rover rover : rovers) {
+            stringBuilder.append(rover.getX()).append(" ");
+            stringBuilder.append(rover.getY()).append(" ");
+            stringBuilder.append(rover.getOrientation()).append("\n");
+        }
+
+        return stringBuilder.toString();
+    }
+
     private boolean isNextMovePositionOccupied(Rover rover) {
         switch (rover.getOrientation()) {
             case N -> {
