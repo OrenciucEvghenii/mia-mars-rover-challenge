@@ -9,12 +9,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class RoverTest {
     @Test
     void setNegativeXForRoverPosition_illegalArgumentExceptionExpected() {
-        assertThrows(RuntimeException.class, () -> new Rover().setX(-1));
+        assertThrows(IllegalArgumentException.class, () -> new Rover().setX(-1));
     }
 
     @Test
     void setNegativeYForRoverPosition_illegalArgumentExceptionExpected() {
-        assertThrows(RuntimeException.class, () -> new Rover().setY(-1));
+        assertThrows(IllegalArgumentException.class, () -> new Rover().setY(-1));
     }
 
     @Test

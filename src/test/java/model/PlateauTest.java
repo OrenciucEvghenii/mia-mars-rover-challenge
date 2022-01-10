@@ -9,12 +9,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class PlateauTest {
     @Test
     void setNegativeXForPlateauSize_illegalArgumentExceptionExpected() {
-        assertThrows(RuntimeException.class, () -> new Plateau().setX(-1));
+        assertThrows(IllegalArgumentException.class, () -> new Plateau().setX(-1));
     }
 
     @Test
     void setNegativeYForPlateauSize_illegalArgumentExceptionExpected() {
-        assertThrows(RuntimeException.class, () -> new Plateau().setY(-1));
+        assertThrows(IllegalArgumentException.class, () -> new Plateau().setY(-1));
     }
 
     @Test
