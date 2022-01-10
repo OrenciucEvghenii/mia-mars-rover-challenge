@@ -1,5 +1,6 @@
 package com.mia.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Getter;
@@ -11,7 +12,7 @@ public class Rover {
     private int x = 0;
     private int y = 0;
     private Orientation orientation = Orientation.N;
-    private List<NavigationMove> navigationSequence;
+    private List<NavigationMove> navigationSequence = new ArrayList<>();
 
     public Rover(int x, int y, Orientation orientation) {
         this.x = x;
