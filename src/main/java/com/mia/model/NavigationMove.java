@@ -19,7 +19,7 @@ public enum NavigationMove {
     public static List<NavigationMove> fromCharSequence(String charSequence) {
         List<NavigationMove> navigationMoves = new ArrayList<>();
 
-        if (StringUtils.isBlank(charSequence)) {
+        if (charSequence == null || charSequence.isEmpty()) {
             return navigationMoves;
         }
 
