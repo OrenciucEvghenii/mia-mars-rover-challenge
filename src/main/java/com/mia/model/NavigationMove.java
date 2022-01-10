@@ -1,6 +1,4 @@
-package model;
-
-import org.apache.commons.lang3.StringUtils;
+package com.mia.model;
 
 import java.util.ArrayList;
 import java.util.List;
