@@ -42,4 +42,8 @@ public class Rover {
             case E -> x++;
         }
     }
+
+    public boolean hasSamePosition(Rover rover) {
+        return rover.x == x && rover.y == y;
+    }
 }
