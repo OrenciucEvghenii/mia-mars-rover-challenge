@@ -4,34 +4,55 @@ import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.jupiter.api.Assertions.*;
 
 class RoverTest {
     @Test
-    void setNegativeXForRoverPosition_illegalArgumentExceptionExpected() {
-        assertThrows(IllegalArgumentException.class, () -> new Rover().setX(-1));
-    }
-
-    @Test
-    void setNegativeYForRoverPosition_illegalArgumentExceptionExpected() {
-        assertThrows(IllegalArgumentException.class, () -> new Rover().setY(-1));
-    }
-
-    @Test
-    void createZeroPositionRover_validRoverObjectExpected() {
+    void createRoverWithNoArgumentsAndRotateLeft_expectedRoverOrientationWest() {
         Rover rover = new Rover();
-        rover.setX(0);
-        rover.setY(0);
-        assertThat(rover.getX(), equalTo(0));
-        assertThat(rover.getY(), equalTo(0));
+        rover.rotateLeft();
+        assertThat(rover.getOrientation(), equalTo(Orientation.W));
     }
 
     @Test
-    void createPositivePositionRover_validRoverObjectExpected() {
+    void createRoverWithNoArgumentsAndRotateRight_expectedRoverOrientationEast() {
         Rover rover = new Rover();
-        rover.setX(1);
-        rover.setY(2);
-        assertThat(rover.getX(), equalTo(1));
-        assertThat(rover.getY(), equalTo(2));
+        rover.rotateRight();
+        assertThat(rover.getOrientation(), equalTo(Orientation.E));
+    }
+
+    @Test
+    void createRoverWithNoArgumentsAndRotateRightFourTimes_expectedRoverOrientationNorth() {
+        Rover rover = new Rover();
+        rover.rotateRight();
+        rover.rotateRight();
+        rover.rotateRight();
+        rover.rotateRight();
+        assertThat(rover.getOrientation(), equalTo(Orientation.N));
+    }
+
+    @Test
+    void createRoverWithNoArgumentsAndRotateLeftFourTimes_expectedRoverOrientationNorth() {
+        Rover rover = new Rover();
+        rover.rotateLeft();
+        rover.rotateLeft();
+        rover.rotateLeft();
+        rover.rotateLeft();
+        assertThat(rover.getOrientation(), equalTo(Orientation.N));
+    }
+
+    @Test
+    void createRoverWithWestOrientationAndRotateLeftTwoTimes_expectedRoverOrientationEast() {
+        Rover rover = new Rover(0, 0, Orientation.W);
+        rover.rotateLeft();
+        rover.rotateLeft();
+        assertThat(rover.getOrientation(), equalTo(Orientation.E));
+    }
+
+    @Test
+    void createRoverWithSouthOrientationAndRotateRightTwoTimes_expectedRoverOrientationNorth() {
+        Rover rover = new Rover(0, 0, Orientation.S);
+        rover.rotateRight();
+        rover.rotateRight();
+        assertThat(rover.getOrientation(), equalTo(Orientation.N));
     }
 }

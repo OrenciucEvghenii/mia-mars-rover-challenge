@@ -11,27 +11,26 @@ public class Rover {
     private Orientation orientation = Orientation.N;
 
     public Rover(int x, int y, Orientation orientation) {
-        setX(x);
-        setY(y);
-        this.orientation = orientation;
-    }
-
-    // TODO: use validator instead of throwing exception manually
-    public void setX(int x) {
-        if (x < 0) {
-            throw new IllegalArgumentException("Rover position can't be negative");
-        }
         this.x = x;
-    }
-
-    public void setY(int y) {
-        if (y < 0) {
-            throw new IllegalArgumentException("Rover position can't be negative");
-        }
         this.y = y;
+        this.orientation = orientation;
     }
 
-    public void setOrientation(Orientation orientation) {
-        this.orientation = orientation;
+    public void rotateLeft() {
+        switch (orientation) {
+            case N -> orientation = Orientation.W;
+            case W -> orientation = Orientation.S;
+            case S -> orientation = Orientation.E;
+            case E -> orientation = Orientation.N;
+        }
+    }
+
+    public void rotateRight() {
+        switch (orientation) {
+            case N -> orientation = Orientation.E;
+            case W -> orientation = Orientation.N;
+            case S -> orientation = Orientation.W;
+            case E -> orientation = Orientation.S;
+        }
     }
 }
