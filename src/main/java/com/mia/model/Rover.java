@@ -1,4 +1,4 @@
-package model;
+package com.mia.model;
 
 import java.util.List;
 
