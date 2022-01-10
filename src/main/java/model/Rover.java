@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +11,7 @@ public class Rover {
     private int x = 0;
     private int y = 0;
     private Orientation orientation = Orientation.NORTH;
+    private List<NavigationMove> navigationSequence;
 
     public Rover(int x, int y, Orientation orientation) {
         this.x = x;
@@ -45,5 +48,9 @@ public class Rover {
 
     public boolean hasSamePosition(Rover rover) {
         return rover.x == x && rover.y == y;
+    }
+
+    public void setNavigationSequence(List<NavigationMove> navigationSequence) {
+        this.navigationSequence = navigationSequence;
     }
 }

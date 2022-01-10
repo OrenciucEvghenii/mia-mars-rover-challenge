@@ -102,4 +102,79 @@ class PlateauTest {
         assertEquals(navigationMoves.get(2), NavigationMove.R);
         assertEquals(navigationMoves.get(3), NavigationMove.M);
     }
+
+    @Test
+    void addRoversOnSeparateDefaultPlateausMoveInAllOrientations_illegalNavigationSequenceExceptionExpected() {
+        assertThrows(IllegalNavigationSequenceException.class, () -> {
+            Plateau plateau = new Plateau();
+            Rover rover = new Rover();
+            rover.setNavigationSequence(NavigationMove.fromCharSequence("M"));
+            plateau.addRover(rover);
+            plateau.navigateRovers();
+        });
+
+        assertThrows(IllegalNavigationSequenceException.class, () -> {
+            Plateau plateau = new Plateau();
+            Rover rover = new Rover();
+            rover.setNavigationSequence(NavigationMove.fromCharSequence("RM"));
+            plateau.addRover(rover);
+            plateau.navigateRovers();
+        });
+
+        assertThrows(IllegalNavigationSequenceException.class, () -> {
+            Plateau plateau = new Plateau();
+            Rover rover = new Rover();
+            rover.setNavigationSequence(NavigationMove.fromCharSequence("LM"));
+            plateau.addRover(rover);
+            plateau.navigateRovers();
+        });
+
+        assertThrows(IllegalNavigationSequenceException.class, () -> {
+            Plateau plateau = new Plateau();
+            Rover rover = new Rover();
+            rover.setNavigationSequence(NavigationMove.fromCharSequence("RRM"));
+            plateau.addRover(rover);
+            plateau.navigateRovers();
+        });
+    }
+
+    @Test
+    void addTwoRoversOnPlateauAndMoveToSamePosition_roverCollisionExceptionExpected() {
+        assertThrows(RoverCollisionException.class, () -> {
+            Plateau plateau = new Plateau(5, 5);
+
+            Rover rover1 = new Rover(0, 0, Orientation.NORTH);
+            rover1.setNavigationSequence(NavigationMove.fromCharSequence("RMMLMM"));
+            plateau.addRover(rover1);
+
+            Rover rover2 = new Rover(0, 2, Orientation.EAST);
+            rover2.setNavigationSequence(NavigationMove.fromCharSequence("MM"));
+            plateau.addRover(rover2);
+
+            plateau.navigateRovers();
+        });
+    }
+
+    @Test
+    void addTwoRoversOnPlateauAndNavigateThroughPlateau_successfulSurfaceScanExpected() throws OutOfPlateauBoundException, PlateauPositionOccupiedException, IllegalNavigationSequenceException, RoverCollisionException {
+        Plateau plateau = new Plateau(5, 5);
+
+        Rover rover1 = new Rover(1, 2, Orientation.NORTH);
+        rover1.setNavigationSequence(NavigationMove.fromCharSequence("LMLMLMLMM"));
+        plateau.addRover(rover1);
+
+        Rover rover2 = new Rover(3, 3, Orientation.EAST);
+        rover2.setNavigationSequence(NavigationMove.fromCharSequence("MMRMMRMRRM"));
+        plateau.addRover(rover2);
+
+        plateau.navigateRovers();
+
+        assertEquals(rover1.getX(),1);
+        assertEquals(rover1.getY(), 3);
+        assertEquals(rover1.getOrientation(), Orientation.NORTH);
+
+        assertEquals(rover2.getX(), 5);
+        assertEquals(rover2.getY(), 1);
+        assertEquals(rover2.getOrientation(), Orientation.EAST);
+    }
 }
