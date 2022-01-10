@@ -76,17 +76,17 @@ public class Plateau {
 
     private boolean isNextMovePositionOccupied(Rover rover) {
         switch (rover.getOrientation()) {
-            case NORTH -> {
-                return isPositionOccupied(new Rover(rover.getX(), rover.getY()+1, Orientation.NORTH));
+            case N -> {
+                return isPositionOccupied(new Rover(rover.getX(), rover.getY()+1, Orientation.N));
             }
-            case WEST -> {
-                return isPositionOccupied(new Rover(rover.getX()-1, rover.getY(), Orientation.NORTH));
+            case W -> {
+                return isPositionOccupied(new Rover(rover.getX()-1, rover.getY(), Orientation.N));
             }
-            case SOUTH -> {
-                return isPositionOccupied(new Rover(rover.getX(), rover.getY()-1, Orientation.NORTH));
+            case S -> {
+                return isPositionOccupied(new Rover(rover.getX(), rover.getY()-1, Orientation.N));
             }
-            case EAST -> {
-                return isPositionOccupied(new Rover(rover.getX()+1, rover.getY(), Orientation.NORTH));
+            case E -> {
+                return isPositionOccupied(new Rover(rover.getX()+1, rover.getY(), Orientation.N));
             }
         }
 
@@ -95,16 +95,16 @@ public class Plateau {
 
     private boolean willFallDownBecauseOfNextMove(Rover rover) {
         switch (rover.getOrientation()) {
-            case NORTH -> {
+            case N -> {
                 return rover.getY() == y;
             }
-            case WEST -> {
+            case W -> {
                 return rover.getX() == 0;
             }
-            case SOUTH -> {
+            case S -> {
                 return rover.getY() == 0;
             }
-            case EAST -> {
+            case E -> {
                 return rover.getX() == x;
             }
         }

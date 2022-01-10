@@ -38,17 +38,17 @@ class PlateauTest {
     void addRoverOutsideOfPlateau_outOfPlateauBoundExceptionExpected() {
         assertThrows(OutOfPlateauBoundException.class, () -> {
             Plateau plateau = new Plateau();
-            plateau.addRover(new Rover(1, 1, Orientation.NORTH));
+            plateau.addRover(new Rover(1, 1, Orientation.N));
         });
 
         assertThrows(OutOfPlateauBoundException.class, () -> {
             Plateau plateau = new Plateau();
-            plateau.addRover(new Rover(-1, -1, Orientation.NORTH));
+            plateau.addRover(new Rover(-1, -1, Orientation.N));
         });
 
         assertThrows(OutOfPlateauBoundException.class, () -> {
             Plateau plateau = new Plateau(2, 3);
-            plateau.addRover(new Rover(3, 4, Orientation.NORTH));
+            plateau.addRover(new Rover(3, 4, Orientation.N));
         });
     }
 
@@ -62,8 +62,8 @@ class PlateauTest {
 
         assertThrows(PlateauPositionOccupiedException.class, () -> {
             Plateau plateau = new Plateau(3,3);
-            plateau.addRover(new Rover(1, 1, Orientation.NORTH));
-            plateau.addRover(new Rover(1, 1, Orientation.WEST));
+            plateau.addRover(new Rover(1, 1, Orientation.N));
+            plateau.addRover(new Rover(1, 1, Orientation.W));
         });
     }
 
@@ -72,9 +72,9 @@ class PlateauTest {
         Plateau plateau = new Plateau(3,3);
 
         try {
-            plateau.addRover(new Rover(1, 1, Orientation.NORTH));
-            plateau.addRover(new Rover(1, 2, Orientation.WEST));
-            plateau.addRover(new Rover(2, 1, Orientation.EAST));
+            plateau.addRover(new Rover(1, 1, Orientation.N));
+            plateau.addRover(new Rover(1, 2, Orientation.W));
+            plateau.addRover(new Rover(2, 1, Orientation.E));
         } catch (OutOfPlateauBoundException | PlateauPositionOccupiedException e) {
             e.printStackTrace();
         }
@@ -143,11 +143,11 @@ class PlateauTest {
         assertThrows(RoverCollisionException.class, () -> {
             Plateau plateau = new Plateau(5, 5);
 
-            Rover rover1 = new Rover(0, 0, Orientation.NORTH);
+            Rover rover1 = new Rover(0, 0, Orientation.N);
             rover1.setNavigationSequence(NavigationMove.fromCharSequence("RMMLMM"));
             plateau.addRover(rover1);
 
-            Rover rover2 = new Rover(0, 2, Orientation.EAST);
+            Rover rover2 = new Rover(0, 2, Orientation.E);
             rover2.setNavigationSequence(NavigationMove.fromCharSequence("MM"));
             plateau.addRover(rover2);
 
@@ -159,11 +159,11 @@ class PlateauTest {
     void addTwoRoversOnPlateauAndNavigateThroughPlateau_successfulSurfaceScanExpected() throws OutOfPlateauBoundException, PlateauPositionOccupiedException, IllegalNavigationSequenceException, RoverCollisionException {
         Plateau plateau = new Plateau(5, 5);
 
-        Rover rover1 = new Rover(1, 2, Orientation.NORTH);
+        Rover rover1 = new Rover(1, 2, Orientation.N);
         rover1.setNavigationSequence(NavigationMove.fromCharSequence("LMLMLMLMM"));
         plateau.addRover(rover1);
 
-        Rover rover2 = new Rover(3, 3, Orientation.EAST);
+        Rover rover2 = new Rover(3, 3, Orientation.E);
         rover2.setNavigationSequence(NavigationMove.fromCharSequence("MMRMMRMRRM"));
         plateau.addRover(rover2);
 
@@ -171,10 +171,10 @@ class PlateauTest {
 
         assertEquals(rover1.getX(),1);
         assertEquals(rover1.getY(), 3);
-        assertEquals(rover1.getOrientation(), Orientation.NORTH);
+        assertEquals(rover1.getOrientation(), Orientation.N);
 
         assertEquals(rover2.getX(), 5);
         assertEquals(rover2.getY(), 1);
-        assertEquals(rover2.getOrientation(), Orientation.EAST);
+        assertEquals(rover2.getOrientation(), Orientation.E);
     }
 }

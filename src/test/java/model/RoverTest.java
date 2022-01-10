@@ -10,14 +10,14 @@ class RoverTest {
     void createRoverWithNoArgumentsAndRotateLeft_expectedRoverOrientationWest() {
         Rover rover = new Rover();
         rover.rotateLeft();
-        assertThat(rover.getOrientation(), equalTo(Orientation.WEST));
+        assertThat(rover.getOrientation(), equalTo(Orientation.W));
     }
 
     @Test
     void createRoverWithNoArgumentsAndRotateRight_expectedRoverOrientationEast() {
         Rover rover = new Rover();
         rover.rotateRight();
-        assertThat(rover.getOrientation(), equalTo(Orientation.EAST));
+        assertThat(rover.getOrientation(), equalTo(Orientation.E));
     }
 
     @Test
@@ -27,7 +27,7 @@ class RoverTest {
         rover.rotateRight();
         rover.rotateRight();
         rover.rotateRight();
-        assertThat(rover.getOrientation(), equalTo(Orientation.NORTH));
+        assertThat(rover.getOrientation(), equalTo(Orientation.N));
     }
 
     @Test
@@ -37,23 +37,23 @@ class RoverTest {
         rover.rotateLeft();
         rover.rotateLeft();
         rover.rotateLeft();
-        assertThat(rover.getOrientation(), equalTo(Orientation.NORTH));
+        assertThat(rover.getOrientation(), equalTo(Orientation.N));
     }
 
     @Test
     void createRoverWithWestOrientationAndRotateLeftTwoTimes_expectedRoverOrientationEast() {
-        Rover rover = new Rover(0, 0, Orientation.WEST);
+        Rover rover = new Rover(0, 0, Orientation.W);
         rover.rotateLeft();
         rover.rotateLeft();
-        assertThat(rover.getOrientation(), equalTo(Orientation.EAST));
+        assertThat(rover.getOrientation(), equalTo(Orientation.E));
     }
 
     @Test
     void createRoverWithSouthOrientationAndRotateRightTwoTimes_expectedRoverOrientationNorth() {
-        Rover rover = new Rover(0, 0, Orientation.SOUTH);
+        Rover rover = new Rover(0, 0, Orientation.S);
         rover.rotateRight();
         rover.rotateRight();
-        assertThat(rover.getOrientation(), equalTo(Orientation.NORTH));
+        assertThat(rover.getOrientation(), equalTo(Orientation.N));
     }
 
     @Test
@@ -62,7 +62,7 @@ class RoverTest {
         int y = rover.getY();
         rover.move();
         assertThat(rover.getY(), equalTo(y+1));
-        assertThat(rover.getOrientation(), equalTo(Orientation.NORTH));
+        assertThat(rover.getOrientation(), equalTo(Orientation.N));
     }
 
     @Test
@@ -72,7 +72,7 @@ class RoverTest {
         rover.rotateRight();
         rover.move();
         assertThat(rover.getX(), equalTo(x+1));
-        assertThat(rover.getOrientation(), equalTo(Orientation.EAST));
+        assertThat(rover.getOrientation(), equalTo(Orientation.E));
     }
 
     @Test
@@ -82,7 +82,7 @@ class RoverTest {
         rover.rotateLeft();
         rover.move();
         assertThat(rover.getX(), equalTo(x-1));
-        assertThat(rover.getOrientation(), equalTo(Orientation.WEST));
+        assertThat(rover.getOrientation(), equalTo(Orientation.W));
     }
 
     @Test
@@ -93,6 +93,6 @@ class RoverTest {
         rover.rotateLeft();
         rover.move();
         assertThat(rover.getY(), equalTo(y-1));
-        assertThat(rover.getOrientation(), equalTo(Orientation.SOUTH));
+        assertThat(rover.getOrientation(), equalTo(Orientation.S));
     }
 }
