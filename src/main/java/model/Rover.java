@@ -33,4 +33,13 @@ public class Rover {
             case E -> orientation = Orientation.S;
         }
     }
+
+    public void move() {
+        switch (orientation) {
+            case N -> y++;
+            case W -> x--;
+            case S -> y--;
+            case E -> x++;
+        }
+    }
 }
