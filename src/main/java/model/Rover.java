@@ -37,6 +37,7 @@ public class Rover {
         }
     }
 
+    // Potentially dangerous method. Could lead to inconsistency with plateau data.
     public void move() {
         switch (orientation) {
             case NORTH -> y++;
