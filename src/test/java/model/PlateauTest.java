@@ -35,17 +35,17 @@ class PlateauTest {
     void addRoverOutsideOfPlateau_outOfPlateauBoundExceptionExpected() {
         assertThrows(OutOfPlateauBoundException.class, () -> {
             Plateau plateau = new Plateau();
-            plateau.addRover(new Rover(1, 1, Orientation.N));
+            plateau.addRover(new Rover(1, 1, Orientation.NORTH));
         });
 
         assertThrows(OutOfPlateauBoundException.class, () -> {
             Plateau plateau = new Plateau();
-            plateau.addRover(new Rover(-1, -1, Orientation.N));
+            plateau.addRover(new Rover(-1, -1, Orientation.NORTH));
         });
 
         assertThrows(OutOfPlateauBoundException.class, () -> {
             Plateau plateau = new Plateau(2, 3);
-            plateau.addRover(new Rover(3, 4, Orientation.N));
+            plateau.addRover(new Rover(3, 4, Orientation.NORTH));
         });
     }
 
@@ -59,8 +59,8 @@ class PlateauTest {
 
         assertThrows(PlateauPositionOccupiedException.class, () -> {
             Plateau plateau = new Plateau(3,3);
-            plateau.addRover(new Rover(1, 1, Orientation.N));
-            plateau.addRover(new Rover(1, 1, Orientation.W));
+            plateau.addRover(new Rover(1, 1, Orientation.NORTH));
+            plateau.addRover(new Rover(1, 1, Orientation.WEST));
         });
     }
 
@@ -69,9 +69,9 @@ class PlateauTest {
         Plateau plateau = new Plateau(3,3);
 
         try {
-            plateau.addRover(new Rover(1, 1, Orientation.N));
-            plateau.addRover(new Rover(1, 2, Orientation.W));
-            plateau.addRover(new Rover(2, 1, Orientation.E));
+            plateau.addRover(new Rover(1, 1, Orientation.NORTH));
+            plateau.addRover(new Rover(1, 2, Orientation.WEST));
+            plateau.addRover(new Rover(2, 1, Orientation.EAST));
         } catch (OutOfPlateauBoundException | PlateauPositionOccupiedException e) {
             e.printStackTrace();
         }

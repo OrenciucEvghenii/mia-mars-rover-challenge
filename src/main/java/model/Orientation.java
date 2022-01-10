@@ -1,5 +1,5 @@
 package model;
 
 public enum Orientation {
-    N, W, S, E
+    NORTH, WEST, SOUTH, EAST
 }

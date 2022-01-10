@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 public class Rover {
     private int x = 0;
     private int y = 0;
-    private Orientation orientation = Orientation.N;
+    private Orientation orientation = Orientation.NORTH;
 
     public Rover(int x, int y, Orientation orientation) {
         this.x = x;
@@ -18,28 +18,28 @@ public class Rover {
 
     public void rotateLeft() {
         switch (orientation) {
-            case N -> orientation = Orientation.W;
-            case W -> orientation = Orientation.S;
-            case S -> orientation = Orientation.E;
-            case E -> orientation = Orientation.N;
+            case NORTH -> orientation = Orientation.WEST;
+            case WEST -> orientation = Orientation.SOUTH;
+            case SOUTH -> orientation = Orientation.EAST;
+            case EAST -> orientation = Orientation.NORTH;
         }
     }
 
     public void rotateRight() {
         switch (orientation) {
-            case N -> orientation = Orientation.E;
-            case W -> orientation = Orientation.N;
-            case S -> orientation = Orientation.W;
-            case E -> orientation = Orientation.S;
+            case NORTH -> orientation = Orientation.EAST;
+            case WEST -> orientation = Orientation.NORTH;
+            case SOUTH -> orientation = Orientation.WEST;
+            case EAST -> orientation = Orientation.SOUTH;
         }
     }
 
     public void move() {
         switch (orientation) {
-            case N -> y++;
-            case W -> x--;
-            case S -> y--;
-            case E -> x++;
+            case NORTH -> y++;
+            case WEST -> x--;
+            case SOUTH -> y--;
+            case EAST -> x++;
         }
     }
 
