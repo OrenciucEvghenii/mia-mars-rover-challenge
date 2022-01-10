@@ -62,6 +62,7 @@ class RoverTest {
         int y = rover.getY();
         rover.move();
         assertThat(rover.getY(), equalTo(y+1));
+        assertThat(rover.getOrientation(), equalTo(Orientation.NORTH));
     }
 
     @Test
